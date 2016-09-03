@@ -252,141 +252,211 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/github-pages.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/structure.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>GitHub Pages</h1>
-          <p><a href="https://pages.github.com">GitHub Pages</a> are public web pages for users,
-organizations, and repositories, that are freely hosted on GitHub’s
-<code class="highlighter-rouge">github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
-powered by Jekyll behind the scenes, so in addition to supporting regular HTML
-content, they’re also a great way to host your Jekyll-powered website for free.</p>
+          <h1>Directory structure</h1>
+          <p>Jekyll is, at its core, a text transformation engine. The concept behind the
+system is this: you give it text written in your favorite markup language, be
+that Markdown, Textile, or just plain HTML, and it churns that through a layout
+or a series of layout files. Throughout that process you can tweak how you want
+the site URLs to look, what data gets displayed in the layout, and more. This
+is all done through editing text files; the static web site is the final
+product.</p>
 
-<p>Never built a website with GitHub Pages before? <a href="http://jmcglone.com/guides/github-pages/">See this marvelous guide by
-Jonathan McGlone to get you up and running</a>.
-This guide will teach you what you need to know about Git, GitHub, and Jekyll to
-create your very own website on GitHub Pages.</p>
+<p>A basic Jekyll site usually looks something like this:</p>
 
-<h3 id="project-page-url-structure">Project Page URL Structure</h3>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">.
+├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _data
+|   └── members.yml
+├── _site
+├── .jekyll-metadata
+└── index.html</code></pre></figure>
 
-<p>Sometimes it’s nice to preview your Jekyll site before you push your <code class="highlighter-rouge">gh-pages</code>
-branch to GitHub. However, the subdirectory-like URL structure GitHub uses for
-Project Pages complicates the proper resolution of URLs. In order to assure your
-site builds properly, use <code class="highlighter-rouge">site.github.url</code> in your URL’s.</p>
+<p>An overview of what each of these does:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Useful for styles with static names... --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.github.url }}/path/to/css.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- and for documents/pages whose URL's can change... --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.url | prepend: site.github.url }}"</span><span class="nt">&gt;</span>{{ page.title }}<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+<div class="mobile-side-scroller">
+<table>
+  <thead>
+    <tr>
+      <th>File / Directory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code>_config.yml</code></p>
+      </td>
+      <td>
+        <p>
 
-<p>This way you can preview your site locally from the site root on localhost,
-but when GitHub generates your pages from the gh-pages branch all the URLs
-will resolve properly.</p>
+          Stores <a href="../configuration/">configuration</a> data. Many of
+          these options can be specified from the command line executable but
+          it’s easier to specify them here so you don’t have to remember them.
 
-<h2 id="deploying-jekyll-to-github-pages">Deploying Jekyll to GitHub Pages</h2>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_drafts</code></p>
+      </td>
+      <td>
+        <p>
 
-<p>GitHub Pages work by looking at certain branches of repositories on GitHub.
-There are two basic types available: user/organization pages and project pages.
-The way to deploy these two types of sites are nearly identical, except for a
-few minor details.</p>
+          Drafts are unpublished posts. The format of these files is without a
+          date: <code>title.MARKUP</code>. Learn how to <a href="../drafts/">
+          work with drafts</a>.
 
-<div class="note protip">
-  <h5>Use the <code>github-pages</code> gem</h5>
-  <p>
-    Our friends at GitHub have provided the
-    <a href="https://github.com/github/pages-gem">github-pages</a>
-    gem which is used to manage Jekyll and its dependencies on
-    GitHub Pages. Using it in your projects means that when you deploy
-    your site to GitHub Pages, you will not be caught by unexpected
-    differences between various versions of the gems. To use the
-    currently-deployed version of the gem in your project, add the
-    following to your <code>Gemfile</code>:
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_includes</code></p>
+      </td>
+      <td>
+        <p>
 
+          These are the partials that can be mixed and matched by your layouts
+          and posts to facilitate reuse. The liquid tag
+          <code>{% include file.ext %}</code>
+          can be used to include the partial in
+          <code>_includes/file.ext</code>.
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_layouts</code></p>
+      </td>
+      <td>
+        <p>
 
-<span class="nb">require</span> <span class="s1">'json'</span>
-<span class="nb">require</span> <span class="s1">'open-uri'</span>
-<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'https://pages.github.com/versions.json'</span><span class="p">).</span><span class="nf">read</span><span class="p">)</span>
+          These are the templates that wrap posts. Layouts are chosen on a
+          post-by-post basis in the
+          <a href="../frontmatter/">YAML Front Matter</a>,
+          which is described in the next section. The liquid tag
+          <code>{{ content }}</code>
+          is used to inject content into the web page.
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span><span class="p">,</span> <span class="n">versions</span><span class="p">[</span><span class="s1">'github-pages'</span><span class="p">]</span></code></pre></figure>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_posts</code></p>
+      </td>
+      <td>
+        <p>
 
+          Your dynamic content, so to speak. The naming convention of these
+          files is important, and must follow the format:
+          <code>YEAR-MONTH-DAY-title.MARKUP</code>.
+          The <a href="../permalinks/">permalinks</a> can be customized for
+          each post, but the date and markup language are determined solely by
+          the file name.
 
-    This will ensure that when you run <code>bundle install</code>, you
-    have the correct version of the <code>github-pages</code> gem.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_data</code></p>
+      </td>
+      <td>
+        <p>
 
-    If that fails, simplify it:
+          Well-formatted site data should be placed here. The Jekyll engine
+          will autoload all YAML files in this directory (using either the
+          <code>.yml</code>, <code>.yaml</code>, <code>.json</code> or
+          <code>.csv</code> formats and extensions) and they will be
+          accessible via `site.data`. If there's a file
+          <code>members.yml</code> under the directory, then you can access
+          contents of the file through <code>site.data.members</code>.
 
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>_site</code></p>
+      </td>
+      <td>
+        <p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+          This is where the generated site will be placed (by default) once
+          Jekyll is done transforming it. It’s probably a good idea to add this
+          to your <code>.gitignore</code> file.
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span></code></pre></figure>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>.jekyll-metadata</code></p>
+      </td>
+      <td>
+        <p>
 
+          This helps Jekyll keep track of which files have not been modified
+          since the site was last built, and which files will need to be
+          regenerated on the next build. This file will not be included in the
+          generated site. It’s probably a good idea to add this to your
+          <code>.gitignore</code> file.
 
-    And be sure to run <code>bundle update</code> often.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><code>index.html</code> and other HTML, Markdown, Textile files</p>
+      </td>
+      <td>
+        <p>
 
-    If you like to install <code>pages-gem</code> on Windows you can find instructions by Jens Willmer on <a href="http://jwillmer.de/blog/tutorial/how-to-install-jekyll-and-pages-gem-on-windows-10-x46#github-pages-and-plugins">how to install github-pages gem on Windows (x64)</a>.
-  </p>
-</div>
+          Provided that the file has a <a href="../frontmatter/">YAML Front
+          Matter</a> section, it will be transformed by Jekyll. The same will
+          happen for any <code>.html</code>, <code>.markdown</code>,
+          <code>.md</code>, or <code>.textile</code> file in your site’s root
+          directory or directories not listed above.
 
-<div class="note info">
-  <h5>Installing <code>github-pages</code> gem on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible
-    to install <code>github-pages</code> gem on Windows.
-    Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Other Files/Folders</p>
+      </td>
+      <td>
+        <p>
 
-<h3 id="user-and-organization-pages">User and Organization Pages</h3>
+          Every other directory and file except for those listed above—such as
+          <code>css</code> and <code>images</code> folders,
+          <code>favicon.ico</code> files, and so forth—will be copied verbatim
+          to the generated site. There are plenty of <a href="../sites/">sites
+          already using Jekyll</a> if you’re curious to see how they’re laid
+          out.
 
-<p>User and organization pages live in a special GitHub repository dedicated to
-only the GitHub Pages files. This repository must be named after the account
-name. For example, <a href="https://github.com/mojombo/mojombo.github.io">@mojombo’s user page
-repository</a> has the name
-<code class="highlighter-rouge">mojombo.github.io</code>.</p>
-
-<p>Content from the <code class="highlighter-rouge">master</code> branch of your repository will be used to build and
-publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p>
-
-<div class="note info">
-  <h5>Custom domains do not affect repository names</h5>
-  <p>
-    GitHub Pages are initially configured to live under the
-    <code>username.github.io</code> subdomain, which is why repositories must
-    be named this way <strong>even if a custom domain is being used</strong>.
-  </p>
-</div>
-
-<h3 id="project-pages">Project Pages</h3>
-
-<p>Unlike user and organization Pages, Project Pages are kept in the same
-repository as the project they are for, except that the website content is
-stored in a specially named <code class="highlighter-rouge">gh-pages</code> branch. The content of this branch will
-be rendered using Jekyll, and the output will become available under a subpath
-of your user pages subdomain, such as <code class="highlighter-rouge">username.github.io/project</code> (unless a
-custom domain is specified—see below).</p>
-
-<p>The Jekyll project repository itself is a perfect example of this branch
-structure—the <a href="llts/llts.github.io">master branch</a> contains the
-actual software project for Jekyll, however the Jekyll website (that you’re
-looking at right now) is contained in the <a href="llts/llts.github.io/tree/gh-pages">gh-pages
-branch</a> of the same repository.</p>
-
-<div class="note warning">
-  <h5>Source Files Must be in the Root Directory</h5>
-  <p>
-GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pages-build-failures#source-setting">overrides</a> the <a href="/docs/configuration/#global-configuration">“Site Source”</a> configuration value, so if you locate your files anywhere other than the root directory, your site may not build correctly.
-  </p>
-</div>
-
-<div class="note">
-  <h5>GitHub Pages Documentation, Help, and Support</h5>
-  <p>
-    For more information about what you can do with GitHub Pages, as well as for
-    troubleshooting guides, you should check out <a href="https://help.github.com/categories/github-pages-basics/">GitHub’s Pages Help
-    section</a>. If all else fails, you should contact <a href="https://github.com/contact">GitHub Support</a>.
-  </p>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
           
@@ -394,60 +464,6 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
 
 
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
 
   
   
@@ -468,14 +484,14 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
           
             
             
-            <a href="/docs/extras/" class="prev">Back</a>
+            <a href="/docs/usage/" class="prev">Back</a>
           
       </div>
       <div class="right align-left">
           
             
             
-            <a href="/docs/deployment-methods/" class="next">Next</a>
+            <a href="/docs/configuration/" class="next">Next</a>
           
       </div>
     </div>
@@ -508,7 +524,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class=""><a href="https://llts.github.io/docs/structure/">Directory structure</a></li>
+  <li class="current"><a href="https://llts.github.io/docs/structure/">Directory structure</a></li>
 
   
   
@@ -598,7 +614,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class="current"><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
+  <li class=""><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
 
   
   

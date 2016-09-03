@@ -252,148 +252,184 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/github-pages.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/contributing.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>GitHub Pages</h1>
-          <p><a href="https://pages.github.com">GitHub Pages</a> are public web pages for users,
-organizations, and repositories, that are freely hosted on GitHub’s
-<code class="highlighter-rouge">github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
-powered by Jekyll behind the scenes, so in addition to supporting regular HTML
-content, they’re also a great way to host your Jekyll-powered website for free.</p>
+          <h1>Contributing</h1>
+          <p>Hi there! Interested in contributing to Jekyll? We’d love your help. Jekyll is an open source project, built one contribution at a time by users like you.</p>
 
-<p>Never built a website with GitHub Pages before? <a href="http://jmcglone.com/guides/github-pages/">See this marvelous guide by
-Jonathan McGlone to get you up and running</a>.
-This guide will teach you what you need to know about Git, GitHub, and Jekyll to
-create your very own website on GitHub Pages.</p>
+<h2 id="where-to-get-help-or-report-a-problem">Where to get help or report a problem</h2>
 
-<h3 id="project-page-url-structure">Project Page URL Structure</h3>
+<ul>
+  <li>If you have a question about using Jekyll, start a discussion on <a href="https://talk.jekyllrb.com">Jekyll Talk</a>.</li>
+  <li>If you think you’ve found a bug within a Jekyll plugin, open an issue in that plugin’s repository.</li>
+  <li>If you think you’ve found a bug within Jekyll itself, <a href="https://github.com/jekyll/jekyll/issues/new">open an issue</a>.</li>
+  <li>More resources are listed on our <a href="https://jekyllrb.com/help/">Help page</a>.</li>
+</ul>
 
-<p>Sometimes it’s nice to preview your Jekyll site before you push your <code class="highlighter-rouge">gh-pages</code>
-branch to GitHub. However, the subdirectory-like URL structure GitHub uses for
-Project Pages complicates the proper resolution of URLs. In order to assure your
-site builds properly, use <code class="highlighter-rouge">site.github.url</code> in your URL’s.</p>
+<h2 id="ways-to-contribute">Ways to contribute</h2>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Useful for styles with static names... --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.github.url }}/path/to/css.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- and for documents/pages whose URL's can change... --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.url | prepend: site.github.url }}"</span><span class="nt">&gt;</span>{{ page.title }}<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+<p>Whether you’re a developer, a designer, or just a Jekyll devotee, there are lots of ways to contribute. Here’s a few ideas:</p>
 
-<p>This way you can preview your site locally from the site root on localhost,
-but when GitHub generates your pages from the gh-pages branch all the URLs
-will resolve properly.</p>
+<ul>
+  <li><a href="https://jekyllrb.com/docs/installation/">Install Jekyll on your computer</a> and kick the tires. Does it work? Does it do what you’d expect? If not, <a href="https://github.com/jekyll/jekyll/issues/new">open an issue</a> and let us know.</li>
+  <li>Comment on some of the project’s <a href="https://github.com/jekyll/jekyll/issues">open issues</a>. Have you experienced the same problem? Know a work around? Do you have a suggestion for how the feature could be better?</li>
+  <li>Read through <a href="https://jekyllrb.com/docs/home/">the documentation</a>, and click the “improve this page” button, any time you see something confusing, or have a suggestion for something that could be improved.</li>
+  <li>Browse through <a href="https://talk.jekyllrb.com/">the Jekyll discussion forum</a>, and lend a hand answering questions. There’s a good chance you’ve already experienced what another user is experiencing.</li>
+  <li>Find <a href="https://github.com/jekyll/jekyll/issues">an open issue</a> (especially <a href="https://github.com/jekyll/jekyll/issues?q=is%3Aopen+is%3Aissue+label%3Ahelp-wanted">those labeled <code class="highlighter-rouge">help-wanted</code></a>), and submit a proposed fix. If it’s your first pull request, we promise we won’t bite, and are glad to answer any questions.</li>
+  <li>Help evaluate <a href="https://github.com/jekyll/jekyll/pulls">open pull requests</a>, by testing the changes locally and reviewing what’s proposed.</li>
+</ul>
 
-<h2 id="deploying-jekyll-to-github-pages">Deploying Jekyll to GitHub Pages</h2>
+<h2 id="submitting-a-pull-request">Submitting a pull request</h2>
 
-<p>GitHub Pages work by looking at certain branches of repositories on GitHub.
-There are two basic types available: user/organization pages and project pages.
-The way to deploy these two types of sites are nearly identical, except for a
-few minor details.</p>
+<h3 id="pull-requests-generally">Pull requests generally</h3>
 
-<div class="note protip">
-  <h5>Use the <code>github-pages</code> gem</h5>
-  <p>
-    Our friends at GitHub have provided the
-    <a href="https://github.com/github/pages-gem">github-pages</a>
-    gem which is used to manage Jekyll and its dependencies on
-    GitHub Pages. Using it in your projects means that when you deploy
-    your site to GitHub Pages, you will not be caught by unexpected
-    differences between various versions of the gems. To use the
-    currently-deployed version of the gem in your project, add the
-    following to your <code>Gemfile</code>:
+<ul>
+  <li>
+    <p>The smaller the proposed change, the better. If you’d like to propose two unrelated changes, submit two pull requests.</p>
+  </li>
+  <li>
+    <p>The more information, the better. Make judicious use of the pull request body. Describe what changes were made, why you made them, and what impact they will have for users.</p>
+  </li>
+  <li>
+    <p>Pull request are easy and fun. If this is your first pull request, it may help to <a href="https://guides.github.com/introduction/flow/">understand GitHub Flow</a>.</p>
+  </li>
+  <li>
+    <p>If you’re submitting a code contribution, be sure to read the <a href="#code-contributions">code contributions</a> section below.</p>
+  </li>
+</ul>
 
+<h3 id="submitting-a-pull-request-via-githubcom">Submitting a pull request via github.com</h3>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<p>Many small changes can be made entirely through the github.com web interface.</p>
 
-<span class="nb">require</span> <span class="s1">'json'</span>
-<span class="nb">require</span> <span class="s1">'open-uri'</span>
-<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'https://pages.github.com/versions.json'</span><span class="p">).</span><span class="nf">read</span><span class="p">)</span>
+<ol>
+  <li>Navigate to the file within <a href="https://github.com/jekyll/jekyll"><code class="highlighter-rouge">jekyll/jekyll</code></a> that you’d like to edit.</li>
+  <li>Click the pencil icon in the top right corner to edit the file</li>
+  <li>Make your proposed changes</li>
+  <li>Click “Propose file change”</li>
+  <li>Click “Create pull request”</li>
+  <li>Add a descriptive title and detailed description for your proposed change. The more information the better.</li>
+  <li>Click “Create pull request”</li>
+</ol>
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span><span class="p">,</span> <span class="n">versions</span><span class="p">[</span><span class="s1">'github-pages'</span><span class="p">]</span></code></pre></figure>
+<p>That’s it! You’ll be automatically subscribed to receive updates as others review your proposed change and provide feedback.</p>
 
+<h3 id="submitting-a-pull-request-via-git-command-line">Submitting a pull request via Git command line</h3>
 
-    This will ensure that when you run <code>bundle install</code>, you
-    have the correct version of the <code>github-pages</code> gem.
+<ol>
+  <li>Fork the project by clicking “Fork” in the top right corner of <a href="https://github.com/jekyll/jekyll"><code class="highlighter-rouge">jekyll/jekyll</code></a>.</li>
+  <li>Clone the repository locally <code class="highlighter-rouge">git clone https://github.com/&lt;you-username&gt;/jekyll</code>.</li>
+  <li>Create a new, descriptively named branch to contain your change ( <code class="highlighter-rouge">git checkout -b my-awesome-feature</code> ).</li>
+  <li>Hack away, add tests. Not necessarily in that order.</li>
+  <li>Make sure everything still passes by running <code class="highlighter-rouge">script/cibuild</code> (see <a href="#running-tests-locally">the tests section</a> below)</li>
+  <li>Push the branch up ( <code class="highlighter-rouge">git push origin my-awesome-feature</code> ).</li>
+  <li>Create a pull request by visiting <code class="highlighter-rouge">https://github.com/&lt;your-username&gt;/jekyll</code> and following the instructions at the top of the screen.</li>
+</ol>
 
-    If that fails, simplify it:
+<h2 id="proposing-updates-to-the-documentation">Proposing updates to the documentation</h2>
 
+<p>We want the Jekyll documentation to be the best it can be. We’ve open-sourced our docs and we welcome any pull requests if you find it lacking.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<h3 id="how-to-submit-changes">How to submit changes</h3>
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span></code></pre></figure>
+<p>You can find the documentation for jekyllrb.com in the <a href="https://github.com/jekyll/jekyll/tree/master/site">site</a> directory. See the section above, <a href="#submitting-a-pull-request">submitting a pull request</a> for information on how to propose a change.</p>
 
+<p>One gotcha, all pull requests should be directed at the <code class="highlighter-rouge">master</code> branch (the default branch).</p>
 
-    And be sure to run <code>bundle update</code> often.
+<h3 id="adding-plugins">Adding plugins</h3>
 
-    If you like to install <code>pages-gem</code> on Windows you can find instructions by Jens Willmer on <a href="http://jwillmer.de/blog/tutorial/how-to-install-jekyll-and-pages-gem-on-windows-10-x46#github-pages-and-plugins">how to install github-pages gem on Windows (x64)</a>.
-  </p>
-</div>
+<p>If you want to add your plugin to the <a href="https://jekyllrb.com/docs/plugins/#available-plugins">list of plugins</a>, please submit a pull request modifying the <a href="https://github.com/jekyll/jekyll/blob/master/site/_docs/plugins.md">plugins page source file</a> by adding a link to your plugin under the proper subheading depending upon its type.</p>
 
-<div class="note info">
-  <h5>Installing <code>github-pages</code> gem on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible
-    to install <code>github-pages</code> gem on Windows.
-    Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+<h2 id="code-contributions">Code Contributions</h2>
 
-<h3 id="user-and-organization-pages">User and Organization Pages</h3>
+<p>Interesting in submitting a pull request? Awesome. Read on. There’s a few common gotchas that we’d love to help you avoid.</p>
 
-<p>User and organization pages live in a special GitHub repository dedicated to
-only the GitHub Pages files. This repository must be named after the account
-name. For example, <a href="https://github.com/mojombo/mojombo.github.io">@mojombo’s user page
-repository</a> has the name
-<code class="highlighter-rouge">mojombo.github.io</code>.</p>
+<h3 id="tests-and-documentation">Tests and documentation</h3>
 
-<p>Content from the <code class="highlighter-rouge">master</code> branch of your repository will be used to build and
-publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p>
+<p>Any time you propose a code change, you should also include updates to the documentation and tests within the same pull request.</p>
 
-<div class="note info">
-  <h5>Custom domains do not affect repository names</h5>
-  <p>
-    GitHub Pages are initially configured to live under the
-    <code>username.github.io</code> subdomain, which is why repositories must
-    be named this way <strong>even if a custom domain is being used</strong>.
-  </p>
-</div>
+<h4 id="documentation">Documentation</h4>
 
-<h3 id="project-pages">Project Pages</h3>
+<p>If your contribution changes any Jekyll behavior, make sure to update the documentation. Documentation lives in the <code class="highlighter-rouge">site/_docs</code> folder (spoiler alert: it’s a Jekyll site!). If the docs are missing information, please feel free to add it in. Great docs make a great project. Include changes to the documentation within your pull request, and once merged, <code class="highlighter-rouge">jekyllrb.com</code> will be updated.</p>
 
-<p>Unlike user and organization Pages, Project Pages are kept in the same
-repository as the project they are for, except that the website content is
-stored in a specially named <code class="highlighter-rouge">gh-pages</code> branch. The content of this branch will
-be rendered using Jekyll, and the output will become available under a subpath
-of your user pages subdomain, such as <code class="highlighter-rouge">username.github.io/project</code> (unless a
-custom domain is specified—see below).</p>
+<h4 id="tests">Tests</h4>
 
-<p>The Jekyll project repository itself is a perfect example of this branch
-structure—the <a href="llts/llts.github.io">master branch</a> contains the
-actual software project for Jekyll, however the Jekyll website (that you’re
-looking at right now) is contained in the <a href="llts/llts.github.io/tree/gh-pages">gh-pages
-branch</a> of the same repository.</p>
+<ul>
+  <li>
+    <p>If you’re creating a small fix or patch to an existing feature, a simple test is more than enough. You can usually copy/paste from an existing example in the <code class="highlighter-rouge">tests</code> folder, but if you need you can find out about our tests suites <a href="https://github.com/thoughtbot/shoulda/tree/master">Shoulda</a> and <a href="https://github.com/rspec/rspec-mocks">RSpec-Mocks</a>.</p>
+  </li>
+  <li>
+    <p>If it’s a brand new feature, create a new <a href="https://github.com/cucumber/cucumber/">Cucumber</a> feature, reusing existing steps where appropriate.</p>
+  </li>
+</ul>
 
-<div class="note warning">
-  <h5>Source Files Must be in the Root Directory</h5>
-  <p>
-GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pages-build-failures#source-setting">overrides</a> the <a href="/docs/configuration/#global-configuration">“Site Source”</a> configuration value, so if you locate your files anywhere other than the root directory, your site may not build correctly.
-  </p>
-</div>
+<h3 id="code-contributions-generally">Code contributions generally</h3>
 
-<div class="note">
-  <h5>GitHub Pages Documentation, Help, and Support</h5>
-  <p>
-    For more information about what you can do with GitHub Pages, as well as for
-    troubleshooting guides, you should check out <a href="https://help.github.com/categories/github-pages-basics/">GitHub’s Pages Help
-    section</a>. If all else fails, you should contact <a href="https://github.com/contact">GitHub Support</a>.
-  </p>
-</div>
+<ul>
+  <li>
+    <p>Jekyll uses the <a href="https://github.com/bbatsov/rubocop">Rubocop</a> static analyzer to ensure that contributions follow the <a href="https://github.com/styleguide/ruby">GitHub Ruby Styleguide</a>. Please check your code using <code class="highlighter-rouge">script/fmt</code> and resolve any errors before pushing your branch.</p>
+  </li>
+  <li>
+    <p>Don’t bump the Gem version in your pull request (if you don’t know what that means, you probably didn’t).</p>
+  </li>
+</ul>
+
+<h2 id="running-tests-locally">Running tests locally</h2>
+
+<h3 id="test-dependencies">Test Dependencies</h3>
+
+<p>To run the test suite and build the gem you’ll need to install Jekyll’s dependencies by running the following command:</p>
+
+<pre class="highlight"><code>$ script/bootstrap</code></pre>
+
+<p>Before you make any changes, run the tests and make sure that they pass (to confirm your environment is configured properly):</p>
+
+<pre class="highlight"><code>$ script/cibuild</code></pre>
+
+<p>If you are only updating a file in <code class="highlighter-rouge">test/</code>, you can use the command:</p>
+
+<pre class="highlight"><code>$ script/test test/blah_test.rb</code></pre>
+
+<p>If you are only updating a <code class="highlighter-rouge">.feature</code> file, you can use the command:</p>
+
+<pre class="highlight"><code>$ script/cucumber features/blah.feature</code></pre>
+
+<p>Both <code class="highlighter-rouge">script/test</code> and <code class="highlighter-rouge">script/cucumber</code> can be run without arguments to
+run its entire respective suite.</p>
+
+<h2 id="a-thank-you">A thank you</h2>
+
+<p>Thanks! Hacking on Jekyll should be fun. If you find any of this hard to figure out, let us know so we can improve our process or documentation!</p>
 
           
 
 
 
 
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -468,14 +504,14 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
           
             
             
-            <a href="/docs/extras/" class="prev">Back</a>
+            <a href="/docs/upgrading/2-to-3/" class="prev">Back</a>
           
       </div>
       <div class="right align-left">
           
             
             
-            <a href="/docs/deployment-methods/" class="next">Next</a>
+            <a href="/docs/conduct/" class="next">Next</a>
           
       </div>
     </div>
@@ -598,7 +634,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class="current"><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
+  <li class=""><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
 
   
   
@@ -642,7 +678,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class=""><a href="https://llts.github.io/docs/contributing/">Contributing</a></li>
+  <li class="current"><a href="https://llts.github.io/docs/contributing/">Contributing</a></li>
 
   
   

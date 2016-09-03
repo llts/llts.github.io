@@ -252,154 +252,113 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/github-pages.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/themes.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>GitHub Pages</h1>
-          <p><a href="https://pages.github.com">GitHub Pages</a> are public web pages for users,
-organizations, and repositories, that are freely hosted on GitHub’s
-<code class="highlighter-rouge">github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
-powered by Jekyll behind the scenes, so in addition to supporting regular HTML
-content, they’re also a great way to host your Jekyll-powered website for free.</p>
+          <h1>Themes</h1>
+          <p>Jekyll has an extensive theme system, which allows you to leverage community-maintained templates and styles to customize your site’s presentation. Jekyll themes package layouts, includes, and stylesheets in a way that can be overridden by your site’s content.</p>
 
-<p>Never built a website with GitHub Pages before? <a href="http://jmcglone.com/guides/github-pages/">See this marvelous guide by
-Jonathan McGlone to get you up and running</a>.
-This guide will teach you what you need to know about Git, GitHub, and Jekyll to
-create your very own website on GitHub Pages.</p>
+<h2 id="installing-a-theme">Installing a theme</h2>
 
-<h3 id="project-page-url-structure">Project Page URL Structure</h3>
+<ol>
+  <li>
+    <p>To install a theme, first, add the theme to your site’s <code class="highlighter-rouge">Gemfile</code>:</p>
 
-<p>Sometimes it’s nice to preview your Jekyll site before you push your <code class="highlighter-rouge">gh-pages</code>
-branch to GitHub. However, the subdirectory-like URL structure GitHub uses for
-Project Pages complicates the proper resolution of URLs. In order to assure your
-site builds properly, use <code class="highlighter-rouge">site.github.url</code> in your URL’s.</p>
+    <div class="highlighter-rouge"><pre class="highlight"><code> gem 'my-awesome-jekyll-theme'
+</code></pre>
+    </div>
+  </li>
+  <li>Save the changes to your <code class="highlighter-rouge">Gemfile</code></li>
+  <li>Run the command <code class="highlighter-rouge">bundle install</code> to install the theme</li>
+  <li>
+    <p>Finally, activate the theme by adding the following to your site’s <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Useful for styles with static names... --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.github.url }}/path/to/css.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- and for documents/pages whose URL's can change... --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.url | prepend: site.github.url }}"</span><span class="nt">&gt;</span>{{ page.title }}<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+    <div class="highlighter-rouge"><pre class="highlight"><code> theme: my-awesome-jekyll-theme
+</code></pre>
+    </div>
+  </li>
+</ol>
 
-<p>This way you can preview your site locally from the site root on localhost,
-but when GitHub generates your pages from the gh-pages branch all the URLs
-will resolve properly.</p>
+<p class="note info">You can have multiple themes listed in your site’s Gemfile, but only one theme can be selected in your site’s <code class="highlighter-rouge">_config.yml</code>.</p>
 
-<h2 id="deploying-jekyll-to-github-pages">Deploying Jekyll to GitHub Pages</h2>
+<h2 id="overriding-theme-defaults">Overriding theme defaults</h2>
 
-<p>GitHub Pages work by looking at certain branches of repositories on GitHub.
-There are two basic types available: user/organization pages and project pages.
-The way to deploy these two types of sites are nearly identical, except for a
-few minor details.</p>
+<p>Jekyll themes set default layouts, includes, and stylesheets, that can be overridden by your site’s content. For example, if your selected theme has a <code class="highlighter-rouge">page</code> layout, you can override the theme’s layout by creating your own <code class="highlighter-rouge">page</code> layout in the <code class="highlighter-rouge">_layouts</code> folder (e.g., <code class="highlighter-rouge">_layouts/page.html</code>).</p>
 
-<div class="note protip">
-  <h5>Use the <code>github-pages</code> gem</h5>
-  <p>
-    Our friends at GitHub have provided the
-    <a href="https://github.com/github/pages-gem">github-pages</a>
-    gem which is used to manage Jekyll and its dependencies on
-    GitHub Pages. Using it in your projects means that when you deploy
-    your site to GitHub Pages, you will not be caught by unexpected
-    differences between various versions of the gems. To use the
-    currently-deployed version of the gem in your project, add the
-    following to your <code>Gemfile</code>:
+<p>Jekyll will look first to your site’s content, before looking to the theme’s defaults, for any requested file in the following folders:</p>
 
+<ul>
+  <li><code class="highlighter-rouge">/_layouts</code></li>
+  <li><code class="highlighter-rouge">/_includes</code></li>
+  <li><code class="highlighter-rouge">/_sass</code></li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<p class="note info">Refer to your selected theme’s documentation and source repository for more information on what files you can override.</p>
 
-<span class="nb">require</span> <span class="s1">'json'</span>
-<span class="nb">require</span> <span class="s1">'open-uri'</span>
-<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'https://pages.github.com/versions.json'</span><span class="p">).</span><span class="nf">read</span><span class="p">)</span>
+<h2 id="creating-a-theme">Creating a theme</h2>
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span><span class="p">,</span> <span class="n">versions</span><span class="p">[</span><span class="s1">'github-pages'</span><span class="p">]</span></code></pre></figure>
+<p>Jekyll themes are distributed as Ruby gems. The only required file is the <a href="http://guides.rubygems.org/specification-reference/">Ruby Gemspec</a>. Here’s an example of a minimal Gemspec for the <code class="highlighter-rouge">my-awesome-jekyll-theme</code> theme, saved as <code class="highlighter-rouge">/my-awsome-jekyll-theme.gemspec</code>:</p>
 
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Gem</span><span class="o">::</span><span class="no">Specification</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">name</span>     <span class="o">=</span> <span class="s1">'&lt;THEME TITLE&gt;'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">version</span>  <span class="o">=</span> <span class="s1">'0.1.0'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">license</span>  <span class="o">=</span> <span class="s1">'MIT'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">summary</span>  <span class="o">=</span> <span class="s1">'&lt;THEME DESCRIPTION&gt;'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">author</span>   <span class="o">=</span> <span class="s1">'&lt;YOUR NAME&gt;'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">email</span>    <span class="o">=</span> <span class="s1">'&lt;YOUR EMAIL&gt;'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">homepage</span> <span class="o">=</span> <span class="s1">'https://github.com/jekyll/my-awesome-jekyll-theme'</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">files</span>    <span class="o">=</span> <span class="sb">`git ls-files -z`</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\x0</span><span class="s2">"</span><span class="p">).</span><span class="nf">grep</span><span class="p">(</span><span class="sr">%r{^_(sass|includes|layouts)/}</span><span class="p">)</span>
+<span class="k">end</span></code></pre></figure>
 
-    This will ensure that when you run <code>bundle install</code>, you
-    have the correct version of the <code>github-pages</code> gem.
+<h3 id="layouts-and-includes">Layouts and includes</h3>
 
-    If that fails, simplify it:
+<p>Theme layouts and includes work just like they work in any Jekyll site. Place layouts in your theme’s <code class="highlighter-rouge">/_layouts</code> folder, and place includes in your themes <code class="highlighter-rouge">/_includes</code> folder.</p>
 
+<p>For example, if your theme has a <code class="highlighter-rouge">/_layouts/page.html</code> file, and a page has <code class="highlighter-rouge">layout: page</code> in its YAML front matter, Jekyll will first look to the site’s <code class="highlighter-rouge">_layouts</code> folder for a the <code class="highlighter-rouge">page</code> layout, and if none exists, will use your theme’s <code class="highlighter-rouge">page</code> layout.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+<h3 id="stylesheets">Stylesheets</h3>
 
-<span class="n">gem</span> <span class="s1">'github-pages'</span></code></pre></figure>
+<p>Your theme’s stylesheets should be placed in your theme’s <code class="highlighter-rouge">/_sass</code> folder, again, just as you would when authoring a Jekyll site. Your theme’s styles can be included in the user’s stylesheet using the <code class="highlighter-rouge">@import</code> directive.</p>
 
+<h3 id="documenting-your-theme">Documenting your theme</h3>
 
-    And be sure to run <code>bundle update</code> often.
+<p>Your theme should include a <code class="highlighter-rouge">/README.md</code> file, which explains how site authors can install and use your theme. What layouts are included? What includes? Do they need to add anything special to their site’s configuration file?</p>
 
-    If you like to install <code>pages-gem</code> on Windows you can find instructions by Jens Willmer on <a href="http://jwillmer.de/blog/tutorial/how-to-install-jekyll-and-pages-gem-on-windows-10-x46#github-pages-and-plugins">how to install github-pages gem on Windows (x64)</a>.
-  </p>
-</div>
+<h3 id="adding-a-screenshot">Adding a screenshot</h3>
 
-<div class="note info">
-  <h5>Installing <code>github-pages</code> gem on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible
-    to install <code>github-pages</code> gem on Windows.
-    Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
-</div>
+<p>Themes are visual. Show users what your theme looks like by including a screenshot as <code class="highlighter-rouge">/screenshot.png</code> within your theme’s repository where it can be retrieved programatically. You can also include this screenshot within your theme’s documentation.</p>
 
-<h3 id="user-and-organization-pages">User and Organization Pages</h3>
+<h3 id="previewing-your-theme">Previewing your theme</h3>
 
-<p>User and organization pages live in a special GitHub repository dedicated to
-only the GitHub Pages files. This repository must be named after the account
-name. For example, <a href="https://github.com/mojombo/mojombo.github.io">@mojombo’s user page
-repository</a> has the name
-<code class="highlighter-rouge">mojombo.github.io</code>.</p>
+<p>To preview your theme as you’re authoring it, it may be helpful to add dummy content in, for example, <code class="highlighter-rouge">/index.html</code> and <code class="highlighter-rouge">/page.html</code> files. This will allow you to use the <code class="highlighter-rouge">jekyll build</code> and <code class="highlighter-rouge">jekyll serve</code> commands to preview your theme, just as you’d preview a Jekyll site.</p>
 
-<p>Content from the <code class="highlighter-rouge">master</code> branch of your repository will be used to build and
-publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p>
+<p class="info note">If you do preview your theme locally, be sure to add <code class="highlighter-rouge">/_site</code> to your theme’s <code class="highlighter-rouge">.gitignore</code> file to prevent the compiled site from also being included when you distribute your theme.</p>
 
-<div class="note info">
-  <h5>Custom domains do not affect repository names</h5>
-  <p>
-    GitHub Pages are initially configured to live under the
-    <code>username.github.io</code> subdomain, which is why repositories must
-    be named this way <strong>even if a custom domain is being used</strong>.
-  </p>
-</div>
+<h3 id="publishing-your-theme">Publishing your theme</h3>
 
-<h3 id="project-pages">Project Pages</h3>
+<p>Themes are published via <a href="https://rubygems.org">RubyGems.org</a>. You’ll need a RubyGems account, which you can <a href="https://rubygems.org/sign_up">create for free</a>.</p>
 
-<p>Unlike user and organization Pages, Project Pages are kept in the same
-repository as the project they are for, except that the website content is
-stored in a specially named <code class="highlighter-rouge">gh-pages</code> branch. The content of this branch will
-be rendered using Jekyll, and the output will become available under a subpath
-of your user pages subdomain, such as <code class="highlighter-rouge">username.github.io/project</code> (unless a
-custom domain is specified—see below).</p>
+<ol>
+  <li>
+    <p>First, package your theme, by running the following command, replacing <code class="highlighter-rouge">my-awesome-jekyll-theme</code> with the name of your theme:</p>
 
-<p>The Jekyll project repository itself is a perfect example of this branch
-structure—the <a href="llts/llts.github.io">master branch</a> contains the
-actual software project for Jekyll, however the Jekyll website (that you’re
-looking at right now) is contained in the <a href="llts/llts.github.io/tree/gh-pages">gh-pages
-branch</a> of the same repository.</p>
+    <div class="highlighter-rouge"><pre class="highlight"><code> gem build my-awesome-jekyll-theme.gemspec
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Next, push your packaged theme up to the RubyGems service, by running the following command, again replacing <code class="highlighter-rouge">my-awesome-jekyll-theme</code> with the name of your theme:</p>
 
-<div class="note warning">
-  <h5>Source Files Must be in the Root Directory</h5>
-  <p>
-GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pages-build-failures#source-setting">overrides</a> the <a href="/docs/configuration/#global-configuration">“Site Source”</a> configuration value, so if you locate your files anywhere other than the root directory, your site may not build correctly.
-  </p>
-</div>
-
-<div class="note">
-  <h5>GitHub Pages Documentation, Help, and Support</h5>
-  <p>
-    For more information about what you can do with GitHub Pages, as well as for
-    troubleshooting guides, you should check out <a href="https://help.github.com/categories/github-pages-basics/">GitHub’s Pages Help
-    section</a>. If all else fails, you should contact <a href="https://github.com/contact">GitHub Support</a>.
-  </p>
-</div>
+    <div class="highlighter-rouge"><pre class="highlight"><code> gem push my-awesome-jekyll-theme-*.gem
+</code></pre>
+    </div>
+  </li>
+</ol>
 
           
 
 
 
 
-
-  
-  
-
-  
-  
 
   
   
@@ -468,14 +427,14 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
           
             
             
-            <a href="/docs/extras/" class="prev">Back</a>
+            <a href="/docs/plugins/" class="prev">Back</a>
           
       </div>
       <div class="right align-left">
           
             
             
-            <a href="/docs/deployment-methods/" class="next">Next</a>
+            <a href="/docs/extras/" class="next">Next</a>
           
       </div>
     </div>
@@ -584,7 +543,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class=""><a href="https://llts.github.io/docs/themes/">Themes</a></li>
+  <li class="current"><a href="https://llts.github.io/docs/themes/">Themes</a></li>
 
   
   
@@ -598,7 +557,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class="current"><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
+  <li class=""><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
 
   
   

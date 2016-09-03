@@ -252,172 +252,95 @@
       <div class="unit four-fifths">
         <article>
           <div class="improve right hide-on-mobiles">
-            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/github-pages.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
+            <a href="https://github.com/jekyll/jekyll/edit/master/site/_docs/assets.md"><i class="fa fa-pencil"></i> &nbsp;Improve this page</a>
           </div>
-          <h1>GitHub Pages</h1>
-          <p><a href="https://pages.github.com">GitHub Pages</a> are public web pages for users,
-organizations, and repositories, that are freely hosted on GitHub’s
-<code class="highlighter-rouge">github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
-powered by Jekyll behind the scenes, so in addition to supporting regular HTML
-content, they’re also a great way to host your Jekyll-powered website for free.</p>
+          <h1>Assets</h1>
+          <p>Jekyll provides built-in support for Sass and can work with CoffeeScript via
+a Ruby gem. In order to use them, you must first create a file with the
+proper extension name (one of <code class="highlighter-rouge">.sass</code>, <code class="highlighter-rouge">.scss</code>, or <code class="highlighter-rouge">.coffee</code>) and <strong><em>start the
+file with two lines of triple dashes</em></strong>, like this:</p>
 
-<p>Never built a website with GitHub Pages before? <a href="http://jmcglone.com/guides/github-pages/">See this marvelous guide by
-Jonathan McGlone to get you up and running</a>.
-This guide will teach you what you need to know about Git, GitHub, and Jekyll to
-create your very own website on GitHub Pages.</p>
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nt">---</span>
+<span class="nt">---</span>
 
-<h3 id="project-page-url-structure">Project Page URL Structure</h3>
+<span class="c1">// start content
+</span><span class="nc">.my-definition</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1</span><span class="mi">.2em</span></code></pre></figure>
 
-<p>Sometimes it’s nice to preview your Jekyll site before you push your <code class="highlighter-rouge">gh-pages</code>
-branch to GitHub. However, the subdirectory-like URL structure GitHub uses for
-Project Pages complicates the proper resolution of URLs. In order to assure your
-site builds properly, use <code class="highlighter-rouge">site.github.url</code> in your URL’s.</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- Useful for styles with static names... --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"{{ site.github.url }}/path/to/css.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- and for documents/pages whose URL's can change... --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ page.url | prepend: site.github.url }}"</span><span class="nt">&gt;</span>{{ page.title }}<span class="nt">&lt;/a&gt;</span></code></pre></figure>
-
-<p>This way you can preview your site locally from the site root on localhost,
-but when GitHub generates your pages from the gh-pages branch all the URLs
-will resolve properly.</p>
-
-<h2 id="deploying-jekyll-to-github-pages">Deploying Jekyll to GitHub Pages</h2>
-
-<p>GitHub Pages work by looking at certain branches of repositories on GitHub.
-There are two basic types available: user/organization pages and project pages.
-The way to deploy these two types of sites are nearly identical, except for a
-few minor details.</p>
-
-<div class="note protip">
-  <h5>Use the <code>github-pages</code> gem</h5>
-  <p>
-    Our friends at GitHub have provided the
-    <a href="https://github.com/github/pages-gem">github-pages</a>
-    gem which is used to manage Jekyll and its dependencies on
-    GitHub Pages. Using it in your projects means that when you deploy
-    your site to GitHub Pages, you will not be caught by unexpected
-    differences between various versions of the gems. To use the
-    currently-deployed version of the gem in your project, add the
-    following to your <code>Gemfile</code>:
-
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
-
-<span class="nb">require</span> <span class="s1">'json'</span>
-<span class="nb">require</span> <span class="s1">'open-uri'</span>
-<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'https://pages.github.com/versions.json'</span><span class="p">).</span><span class="nf">read</span><span class="p">)</span>
-
-<span class="n">gem</span> <span class="s1">'github-pages'</span><span class="p">,</span> <span class="n">versions</span><span class="p">[</span><span class="s1">'github-pages'</span><span class="p">]</span></code></pre></figure>
-
-
-    This will ensure that when you run <code>bundle install</code>, you
-    have the correct version of the <code>github-pages</code> gem.
-
-    If that fails, simplify it:
-
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
-
-<span class="n">gem</span> <span class="s1">'github-pages'</span></code></pre></figure>
-
-
-    And be sure to run <code>bundle update</code> often.
-
-    If you like to install <code>pages-gem</code> on Windows you can find instructions by Jens Willmer on <a href="http://jwillmer.de/blog/tutorial/how-to-install-jekyll-and-pages-gem-on-windows-10-x46#github-pages-and-plugins">how to install github-pages gem on Windows (x64)</a>.
-  </p>
-</div>
+<p>Jekyll treats these files the same as a regular page, in that the output file
+will be placed in the same directory that it came from. For instance, if you
+have a file named <code class="highlighter-rouge">css/styles.scss</code> in your site’s source folder, Jekyll
+will process it and put it in your site’s destination folder under
+<code class="highlighter-rouge">css/styles.css</code>.</p>
 
 <div class="note info">
-  <h5>Installing <code>github-pages</code> gem on Windows</h5>
-  <p>
-    While Windows is not officially supported, it is possible
-    to install <code>github-pages</code> gem on Windows.
-    Special instructions can be found on our
-    <a href="../windows/#installation">Windows-specific docs page</a>.
-  </p>
+  <h5>Jekyll processes all Liquid filters and tags in asset files</h5>
+  <p>If you are using <a href="https://mustache.github.io">Mustache</a>
+     or another JavaScript templating language that conflicts with
+     the <a href="/docs/templates/">Liquid template syntax</a>, you
+     will need to place <code>{&#37; raw &#37;}</code> and
+     <code>{&#37; endraw &#37;}</code> tags around your code.</p>
 </div>
 
-<h3 id="user-and-organization-pages">User and Organization Pages</h3>
+<h2 id="sassscss">Sass/SCSS</h2>
 
-<p>User and organization pages live in a special GitHub repository dedicated to
-only the GitHub Pages files. This repository must be named after the account
-name. For example, <a href="https://github.com/mojombo/mojombo.github.io">@mojombo’s user page
-repository</a> has the name
-<code class="highlighter-rouge">mojombo.github.io</code>.</p>
+<p>Jekyll allows you to customize your Sass conversion in certain ways.</p>
 
-<p>Content from the <code class="highlighter-rouge">master</code> branch of your repository will be used to build and
-publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p>
+<p>Place all your partials in your <code class="highlighter-rouge">sass_dir</code>, which defaults to
+<code class="highlighter-rouge">&lt;source&gt;/_sass</code>. Place your main SCSS or Sass files in the place you want
+them to be in the output file, such as <code class="highlighter-rouge">&lt;source&gt;/css</code>. For an example, take
+a look at <a href="https://github.com/jekyll/jekyll-sass-converter/tree/master/example">this example site using Sass support in Jekyll</a>.</p>
+
+<p>If you are using Sass <code class="highlighter-rouge">@import</code> statements, you’ll need to ensure that your
+<code class="highlighter-rouge">sass_dir</code> is set to the base directory that contains your Sass files. You
+can do that thusly:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">sass</span><span class="pi">:</span>
+    <span class="s">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span></code></pre></figure>
+
+<p>The Sass converter will default the <code class="highlighter-rouge">sass_dir</code> configuration option to
+<code class="highlighter-rouge">_sass</code>.</p>
 
 <div class="note info">
-  <h5>Custom domains do not affect repository names</h5>
+  <h5>The <code>sass_dir</code> is only used by Sass</h5>
   <p>
-    GitHub Pages are initially configured to live under the
-    <code>username.github.io</code> subdomain, which is why repositories must
-    be named this way <strong>even if a custom domain is being used</strong>.
+
+    Note that the <code>sass_dir</code> becomes the load path for Sass imports,
+    nothing more. This means that Jekyll does not know about these files
+    directly, so any files here should not contain the YAML Front Matter as
+    described above nor will they be transformed as described above. This
+    folder should only contain imports.
+
   </p>
 </div>
 
-<h3 id="project-pages">Project Pages</h3>
+<p>You may also specify the output style with the <code class="highlighter-rouge">style</code> option in your
+<code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<p>Unlike user and organization Pages, Project Pages are kept in the same
-repository as the project they are for, except that the website content is
-stored in a specially named <code class="highlighter-rouge">gh-pages</code> branch. The content of this branch will
-be rendered using Jekyll, and the output will become available under a subpath
-of your user pages subdomain, such as <code class="highlighter-rouge">username.github.io/project</code> (unless a
-custom domain is specified—see below).</p>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">sass</span><span class="pi">:</span>
+    <span class="s">style</span><span class="pi">:</span> <span class="s">compressed</span></code></pre></figure>
 
-<p>The Jekyll project repository itself is a perfect example of this branch
-structure—the <a href="llts/llts.github.io">master branch</a> contains the
-actual software project for Jekyll, however the Jekyll website (that you’re
-looking at right now) is contained in the <a href="llts/llts.github.io/tree/gh-pages">gh-pages
-branch</a> of the same repository.</p>
+<p>These are passed to Sass, so any output style options Sass supports are valid
+here, too.</p>
 
-<div class="note warning">
-  <h5>Source Files Must be in the Root Directory</h5>
-  <p>
-GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pages-build-failures#source-setting">overrides</a> the <a href="/docs/configuration/#global-configuration">“Site Source”</a> configuration value, so if you locate your files anywhere other than the root directory, your site may not build correctly.
-  </p>
-</div>
+<h2 id="coffeescript">Coffeescript</h2>
 
-<div class="note">
-  <h5>GitHub Pages Documentation, Help, and Support</h5>
-  <p>
-    For more information about what you can do with GitHub Pages, as well as for
-    troubleshooting guides, you should check out <a href="https://help.github.com/categories/github-pages-basics/">GitHub’s Pages Help
-    section</a>. If all else fails, you should contact <a href="https://github.com/contact">GitHub Support</a>.
-  </p>
-</div>
+<p>To enable Coffeescript in Jekyll 3.0 and up you must</p>
+
+<ul>
+  <li>Install the <code class="highlighter-rouge">jekyll-coffeescript</code> gem</li>
+  <li>Ensure that your <code class="highlighter-rouge">_config.yml</code> is up-to-date and includes the following:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gems</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="s">jekyll-coffeescript</span></code></pre></figure>
+
 
           
 
 
 
 
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
 
   
   
@@ -468,14 +391,14 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
           
             
             
-            <a href="/docs/extras/" class="prev">Back</a>
+            <a href="/docs/datafiles/" class="prev">Back</a>
           
       </div>
       <div class="right align-left">
           
             
             
-            <a href="/docs/deployment-methods/" class="next">Next</a>
+            <a href="/docs/migrations/" class="next">Next</a>
           
       </div>
     </div>
@@ -554,7 +477,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class=""><a href="https://llts.github.io/docs/assets/">Assets</a></li>
+  <li class="current"><a href="https://llts.github.io/docs/assets/">Assets</a></li>
 
   
   
@@ -598,7 +521,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class="current"><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
+  <li class=""><a href="https://llts.github.io/docs/github-pages/">GitHub Pages</a></li>
 
   
   
