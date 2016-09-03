@@ -31,5 +31,5 @@ gems:
   - jemoji
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-avatar
+  # - jekyll-avatar
   - jekyll-mentions
