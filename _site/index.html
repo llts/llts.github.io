@@ -12,6 +12,7 @@
   <script src="/js/html5shiv.min.js"></script>
   <script src="/js/respond.min.js"></script>
   <![endif]-->
+  <script src="/js/clipboard.js"></script>
 </head>
 
 
@@ -78,6 +79,25 @@
 
   hello
 
+<!-- 1. Define some markup -->
+<button class="btn" data-clipboard-text="1">Copy</button>
+<button class="btn" data-clipboard-text="2">Copy</button>
+<button class="btn" data-clipboard-text="3">Copy</button>
+
+<!-- 2. Include library -->
+<script src="/js/clipboard.js"></script>
+
+<!-- 3. Instantiate clipboard by passing a string selector -->
+<script>
+var clipboard = new Clipboard('.btn');
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
+
   <footer>
   <div class="grid">
     <div class="unit one-third center-on-mobiles">
@@ -94,6 +114,21 @@
   </div>
 </footer>
 
+<script src="/js/clipboard.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+  var snippets = $('div.highlight>pre, figure.highlight td.code, figure.highlight>pre');
+
+  [].forEach.call(snippets, function(snippet) {
+      snippet.firstChild.insertAdjacentHTML('beforebegin', '<button class="btn" data-clipboard-snippet><img class="clippy" src="/img/clippy.svg" width="13" alt="cp" ></button>');
+  });
+
+  var clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+      target: function(trigger) {
+          return trigger.nextElementSibling;
+      }
+  });
+</script>
   <script>
   var anchorForId = function (id) {
     var anchor = document.createElement("a");
@@ -125,7 +160,7 @@
         linkifyAnchors(level, contentBlock);
       }
     }
-  };
+  };  
 </script>
 
 

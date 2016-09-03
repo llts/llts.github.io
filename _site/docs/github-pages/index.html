@@ -12,6 +12,7 @@
   <script src="/js/html5shiv.min.js"></script>
   <script src="/js/respond.min.js"></script>
   <![endif]-->
+  <script src="/js/clipboard.js"></script>
 </head>
 
 
@@ -144,7 +145,7 @@
 
   
   
-  <option value="https://llts.github.io"></option>
+  <option value="https://llts.github.io/docs/datafiles/">Data Files</option>
 
   
   
@@ -550,7 +551,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
   
   
-  <li class=""><a href="https://llts.github.io"></a></li>
+  <li class=""><a href="https://llts.github.io/docs/datafiles/">Data Files</a></li>
 
   
   
@@ -681,6 +682,21 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
   </div>
 </footer>
 
+<script src="/js/clipboard.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+  var snippets = $('div.highlight>pre, figure.highlight td.code, figure.highlight>pre');
+
+  [].forEach.call(snippets, function(snippet) {
+      snippet.firstChild.insertAdjacentHTML('beforebegin', '<button class="btn" data-clipboard-snippet><img class="clippy" src="/img/clippy.svg" width="13" alt="cp" ></button>');
+  });
+
+  var clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+      target: function(trigger) {
+          return trigger.nextElementSibling;
+      }
+  });
+</script>
   <script>
   var anchorForId = function (id) {
     var anchor = document.createElement("a");
@@ -712,7 +728,7 @@ GitHub Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
         linkifyAnchors(level, contentBlock);
       }
     }
-  };
+  };  
 </script>
 
 

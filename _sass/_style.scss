@@ -1016,3 +1016,28 @@ code.output {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.clippy {
+    margin-top: -3px;
+    position: relative;
+    top: 3px;
+}
+
+.btn[disabled] .clippy {
+    opacity: .3;
+}
+
+.snippet .btn {
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    padding: 2px 6px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+
+.snippet:hover .btn {
+    opacity: 1;
+}
