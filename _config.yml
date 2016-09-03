@@ -27,10 +27,11 @@ logo: img/logo-2x.png
 
 theme: minima
 gems:
-  - jekyll-feed
-  - jekyll-redirect-from
-  - jemoji
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  # - jekyll-avatar
-  - jekyll-mentions
+  - github-pages
+  # - jekyll-feed
+  # - jekyll-redirect-from
+  # - jemoji
+  # - jekyll-sitemap
+  # - jekyll-seo-tag
+  # # - jekyll-avatar
+  # - jekyll-mentions
