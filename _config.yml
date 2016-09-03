@@ -24,7 +24,7 @@ twitter:
 
 logo: img/logo-2x.png
 
-theme: minima
+# theme: minima
 gems:
   - jekyll-feed
   - jekyll-redirect-from
