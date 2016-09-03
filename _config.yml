@@ -8,6 +8,7 @@ permalink: /news/:year/:month/:day/:title/
 
 repository: llts/llts.github.io
 # help_url: https://github.com/jekyll/jekyll-help
+github_username: llts
 
 timezone: America/Los_Angeles
 
@@ -24,7 +25,7 @@ twitter:
 
 logo: img/logo-2x.png
 
-# theme: minima
+theme: minima
 gems:
   - jekyll-feed
   - jekyll-redirect-from
